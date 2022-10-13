@@ -2,8 +2,10 @@ import serial
 import time
 
 lengths = {'s': 3,
-            'u': 0,
-            'd': 0}
+           'u': 0,
+           'd': 0,
+           'f': 3, 
+           'p': 0}
 
 def get_connection(port):
     ser = serial.Serial(port, timeout=1)
