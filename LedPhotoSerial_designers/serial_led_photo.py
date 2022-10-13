@@ -20,7 +20,7 @@ def send(ser, message, mesg_len):
         print(result)
     return result
     
-list = []
+l = []
 max_val = 0
 min_val = 1024
 avast = False
@@ -33,12 +33,22 @@ if __name__ == '__main__':
             val = send(ser, cmd.encode(), lengths[cmd])
             if val:
                 val = int(val)
-                print(f'Val as int {val}')
-                if val < THRESHOLD:
+                l.append(val)
+                if val > max_val:
+                    max_val = val
+                if val < min_val:
+                    min_val = val
+                if val < ((min_val + max_val) / 2):
                     send(ser, 'u'.encode(), 0)
                 else:
                     send(ser, 'd'.encode(), 0)
-        time.sleep(1)
+                time.sleep(1)
+            if (time.time() > timeout):
+                break 
         inp = input("Enter command:")
         length = lengths.get(inp, 17)
         send(ser, inp.encode(), length)
+        if inp == 'f':
+            avast = True
+        if inp == 'p':
+            avast = False
