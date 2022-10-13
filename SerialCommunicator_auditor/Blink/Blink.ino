@@ -9,10 +9,10 @@ void setup() {
 void loop() {
   if (Serial.available() > 0){
       char message = Serial.read();  
-      if (message == 'd'){
+      if (message == 'u'){
          digitalWrite(led_pin, HIGH);
       }
-      else if (message == 'u'){
+      else if (message == 'd'){
          digitalWrite(led_pin, LOW);
       }
       else if (message == 's'){
