@@ -13,18 +13,18 @@ long duration_space[20];
 bool color[20];
 int index = 0;
 int previous = SPACE_LEVEL;
-String CODES[] = {".-", "--.."};
-char LETTERS[] = {'A', 'F'};
-int NLETTRERS = 2;
+String CODES[] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+char LETTERS[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+int NLETTRERS = 27;
 
 void setup() {
+  Serial.begin(9600);
   pinMode(DATA_PIN, INPUT);
 }
 
 void loop() {
   fill_arrays();
   decode_letter();
-  
 }
 
 void decode_letter(){
@@ -35,15 +35,15 @@ void decode_letter(){
         if (duration[j] == DASH_DURATION and color[j] == DATA){
           code += '-';
         }
-        if (duration[j] == DOT_DURATION and color[j] == DATA){
+        else if (duration[j] == DOT_DURATION and color[j] == DATA){
           code += '.';
         }
         duration[j] = 0;
       }
       duration[i] = 0;
-      for (int iletter=0; iletter < NLETTRERS; iletter++){
-        if (code == CODES[iletter]){
-         Serial.println(LETTERS[iletter]);
+      for (int il=0; il < NLETTRERS; il++){
+        if (code == CODES[il]){
+         Serial.println(LETTERS[il]);
         }
       }
     }
