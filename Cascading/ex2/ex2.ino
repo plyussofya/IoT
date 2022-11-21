@@ -12,9 +12,9 @@ B10110110, B10111110, B11100000, B11111110, B11100110};
 void showNumber(int f){
   for(int i = 0; i < 7; i++){
     if(bitRead(numbers[f], 7-i) == HIGH){
-		digitalWrite(pins[i], HIGH);
+	digitalWrite(pins[i], HIGH);
     } else {
-		digitalWrite(pins[i], LOW);
+	digitalWrite(pins[i], LOW);
 	}
   } 
 }
