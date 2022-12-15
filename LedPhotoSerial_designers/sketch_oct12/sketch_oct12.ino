@@ -20,6 +20,11 @@ void loop() {
          val = map(val, 0, 1023, 100, 999);
          Serial.print(val);
       }
+      else if (message == 'f'){
+        brightness = analogRead(sensor_pin);
+        analogWrite(led_pin, map(brightness, 0, 1023, 255, 0));
+        Serial.println(brightness);
+      }
       else{
         Serial.println("Unknown message");
        }
