@@ -24,7 +24,7 @@ if __name__ == '__main__':
     ser = get_connection("COM8")
     while True:
         print("u - turn on, \nd - turn off, \na - on/off according to sensor readings, \nl - enable data transfer, \nb - brightness")      
-        inp = input("Введите одну из команд:")
+        inp = input("Enter one of the commands:")
         if inp == "u" or inp == "d" :
             send(ser, inp.encode(), lengths[inp])
         elif inp == "a":
