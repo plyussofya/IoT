@@ -19,19 +19,18 @@ def send(ser,message, mesg_len):
         result = data.decode()
         result = result.strip()
         return (result)
-    
-    
+        
 if __name__ == '__main__':
     ser = get_connection("COM6")
     while True:
         print("Введите одну из команд: \nu - turn on, \nd - turn off, \na - on/off according to sensor readings, \nl - enable data transfer, \nf - brightness")      
         inp = input()
         if inp == "u" or inp == "d" :
-            send(ser, inp.encode(), lenghts[inp])
+            send(ser, inp.encode(), lengths[inp])
         elif inp == "a":
             while True:
                 com = "s"
-                val = send(ser, com.encode(), lenghts[com])
+                val = send(ser, com.encode(), lengths[com])
                 if val:
                     val = int(val)
                     print(val)
@@ -42,14 +41,14 @@ if __name__ == '__main__':
         elif inp == "l":
             while True: 
                 com = "s"
-                val = send(ser, com.encode(), lenghts[com])
+                val = send(ser, com.encode(), lengths[com])
                 if val:
                     values.append(val)
                 print (values)
         elif inp == "f":
             while True: 
                 com = "s"
-                val = send(ser, com.encode(), lenghts[com])
+                val = send(ser, com.encode(), lengths[com])
                 if val:
                     val = int(val)
                     print(val)
