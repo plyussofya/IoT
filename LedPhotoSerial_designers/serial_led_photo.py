@@ -19,12 +19,12 @@ def send(ser,message, mesg_len):
         result = data.decode()
         result = result.strip()
         return (result)
-        
+     
 if __name__ == '__main__':
-    ser = get_connection("COM6")
+    ser = get_connection("COM8")
     while True:
-        print("Введите одну из команд: \nu - turn on, \nd - turn off, \na - on/off according to sensor readings, \nl - enable data transfer, \nf - brightness")      
-        inp = input()
+        print("u - turn on, \nd - turn off, \na - on/off according to sensor readings, \nl - enable data transfer, \nb - brightness")      
+        inp = input("Введите одну из команд:")
         if inp == "u" or inp == "d" :
             send(ser, inp.encode(), lengths[inp])
         elif inp == "a":
@@ -32,29 +32,27 @@ if __name__ == '__main__':
                 com = "s"
                 val = send(ser, com.encode(), lengths[com])
                 if val:
-                    val = int(val)
-                    print(val)
-                    if val > 900:
+                    if int(val) > 800:
                         send(ser, 'd'.encode(), 0)
                     else:
                         send(ser, 'u'.encode(), 0)
         elif inp == "l":
-            while True: 
+            while True:
                 com = "s"
                 val = send(ser, com.encode(), lengths[com])
                 if val:
                     values.append(val)
-                print (values)
-        elif inp == "f":
+                    if len(values) == 10:
+                        print(values)
+                        break     
+        elif inp == "b":
             while True: 
-                com = "s"
+                com = "f"
                 val = send(ser, com.encode(), lengths[com])
                 if val:
-                    val = int(val)
-                    print(val)
-                    if val > 900:
+                    if int(val) > 800:
                         send(ser, 'f'.encode(), 0)
-                        brightness = send(ser, '50'.encode(),1)
+                        brightness = send(ser, '10'.encode(),1)
                     else:
                         send(ser, 'f'.encode(), 0)
                         brightness = send(ser, '255'.encode(),1)
