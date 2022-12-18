@@ -24,7 +24,6 @@ void loop() {
     else{
       for (int il = 0; il < NLETTRERS; il++){
         if (letter == LETTERS[il]){
-          Serial.print(LETTERS[il]);
           String code = CODES[il];
           send_letter(code);
         }
@@ -34,6 +33,7 @@ void loop() {
 }
 
 void send_letter(String code) {
+  Serial.println(code);
   int code_len = code.length(); 
   for (int i = 0; i < code_len; i++){
      char symbol = code[i];
