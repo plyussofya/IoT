@@ -17,13 +17,13 @@ void setup() {
 
 void loop() {
   if(Serial.available() >= 1){
-    char iletter = Serial.read();
-    if (iletter == ' '){
+    char letter = Serial.read();
+    if (letter == ' '){
       send_sep_word();
     }
     else{
       for (int il = 0; il < NLETTRERS; il++){
-        if (iletter == LETTERS[il]){
+        if (letter == LETTERS[il]){
           Serial.print(LETTERS[il]);
           String code = CODES[il];
           send_letter(code);
