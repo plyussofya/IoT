@@ -29,7 +29,7 @@ void loop()
 {
   if (mess_input)
   {
-    Serial.print("Введите число: ");
+    Serial.print("Enter number: ");
     mess_input = false;
   }
 
