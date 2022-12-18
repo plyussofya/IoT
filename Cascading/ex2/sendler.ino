@@ -3,7 +3,7 @@
 #define RX_PIN 2
 #define TX_PIN 3
 
-SoftwareSerial Slave(RX_PIN, TX_PIN);	  // rx, tx
+SoftwareSerial Slave(RX_PIN, TX_PIN);// rx, tx
 bool mess_input = true;
 int num = 0;
 
@@ -29,7 +29,7 @@ void loop()
 {
   if (mess_input)
   {
-    Serial.print("Enter num: ");
+    Serial.print("Введите число: ");
     mess_input = false;
   }
 
