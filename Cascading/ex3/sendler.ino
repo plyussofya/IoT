@@ -1,10 +1,9 @@
 #include <SoftwareSerial.h>
 
 // Определение пинов для сдвигового регистра
-
-#define LACTH_PIN 8
-#define CLOCK_PIN 12
-#define DATA_PIN 11
+#define DATA_PIN 8
+#define LACTH_PIN 9
+#define CLOCK_PIN 10
 
 // Определение пинов для SoftwareSerial (общение ардуинок)
 
@@ -13,7 +12,7 @@
 
 SoftwareSerial Slave(RX_PIN, TX_PIN);	  // rx, tx
 
-bool mess_input = true;  // Флаг, чтобы вывводить строку "Enter num: " только 1 раз перед вводом числа
+bool mess_input = true;  // Флаг, чтобы вывводить строку "Enter number: " только 1 раз перед вводом числа
 long num = 0;
 
 uint8_t nums[] = { 0b11101110, 0b10000010, 0b11011100, 0b11010110, 0b10110010, 0b01110110, 0b01111110, 0b11000010, 0b11111110, 0b11110110 };  // Массив чисел от 0 до 9 в виде данных для сдвигового регистра
@@ -36,7 +35,7 @@ void loop()
 {
   if (mess_input)
   {
-    Serial.print("Enter num: ");  // Просим ввести число
+    Serial.print("Enter number: ");  // Просим ввести число
     mess_input = false;  // Теперь не вывводим это сообщение, пока пользователь число не введет
   }
 
