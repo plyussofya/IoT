@@ -1,8 +1,13 @@
 #define DATA_PIN 9
 #define DATA_LEVEL LOW
 #define SPACE_LEVEL HIGH
+
+#define DOT_DURATION 1
 #define DASH_DURATION 3
-#define DOT_DURATION 7
+
+#define LETTER_DURATION 3
+#define WORD_DURATION 7
+
 #define TU 100
 
 String CODES[] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
@@ -39,7 +44,7 @@ void send_letter(String code) {
      char symbol = code[i];
      if (symbol == '.'){
        digitalWrite(DATA_PIN, DATA_LEVEL);
-       delay(TU);
+       delay(DOT_DURATION * TU);
       }
       else{
         digitalWrite(DATA_PIN, DATA_LEVEL);
@@ -48,11 +53,11 @@ void send_letter(String code) {
       digitalWrite(DATA_PIN, SPACE_LEVEL);
       delay(TU);
    }
-   delay((DASH_DURATION - 1) * TU);
+   delay((LETTER_DURATION - 1) * TU);
 }
 
 void send_sep_word(){
   digitalWrite(DATA_PIN, SPACE_LEVEL);
-  delay((DOT_DURATION - DASH_DURATION) * TU);
+  delay((WORD_DURATION - LETTER_DURATION) * TU);
   Serial.print(" ");
 }
