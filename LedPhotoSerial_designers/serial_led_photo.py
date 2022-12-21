@@ -47,10 +47,25 @@ if __name__ == '__main__':
                         break     
         elif inp == "b":
             while True: 
-                com = "f"
-                val = send(ser, com.encode(), lengths[com])
+                com1 = "s"
+                v = send(ser, com1.encode(), lengths[com])
+                if ( v < 100):
+                    send(ser, 'f'.encode(), 0)
+                    bright = send(ser, '70'.encode(), 1)
+                if (v > 100 and v < 300):
+                     send(ser, 'f'.encode(), 0)
+                     bright = send(ser, '120'.encode(), 1)
+                if (val > 300 and val < 500):
+                     send(ser, 'f'.encode(), 0)
+                     bright = send(ser, '170'.encode(), 1)
+                if (val > 500 and val < 999):
+                     send(ser, 'f'.encode(), 0)
+                     bright = send(ser, '250'.encode(), 1)
+                      
+                      
+                      
                 if val:
-                    if int(val) > 800:
+                    if int(v) > 800:
                         send(ser, 'f'.encode(), 0)
                         brightness = send(ser, '10'.encode(),1)
                     else:
