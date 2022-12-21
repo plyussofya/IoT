@@ -21,8 +21,9 @@ void loop() {
          Serial.print(val);
       }
       else if (message == 'f'){
-        int brightness = analogRead(sensor_pin);
-        analogWrite(led_pin, map(brightness, 0, 1023, 0, 255));
+        String num = Serial.readString();
+        int brightness = num.toInt();
+        analogWrite(led_pin, brightness);
         Serial.println(brightness);
       }
       else{
